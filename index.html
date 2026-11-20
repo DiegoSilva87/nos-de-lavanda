@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nós de Lavanda Ateliê</title>
+<meta name="description" content="Peças artesanais em macramê feitas à mão e sob encomenda por Tanyeska Pereira: luminárias, mesa posta, bolsas, decoração e casamentos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* paleta oficial da marca (projeto Criartim 2025) */
+  --linho:#F9F5F2;      /* fundo */
+  --salvia:#707264;     /* caule, textos de apoio */
+  --lavanda:#CEB1E0;    /* flor, realces */
+  --areia:#E6C7A8;      /* fio cru, superfícies quentes */
+  --ameixa:#68486D;     /* tipografia da marca, seções fortes */
+  --tinta:#3B2B3F;      /* texto corrido */
+  --linho-2:#F1EAE4;
+  --display:"Italiana","Didot","Bodoni 72",serif;
+  --texto:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  /* layout: coluna editorial assimétrica; a cortina de fios interativa é o único momento ousado */
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--linho);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;color:var(--ameixa);text-wrap:balance;line-height:1.05}
+:focus-visible{outline:2px solid var(--ameixa);outline-offset:3px;border-radius:2px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.eyebrow{font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--salvia);font-weight:400}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font:500 .8rem/1 var(--texto);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:transform .25s ease,background .25s ease,color .25s ease;cursor:pointer;border:1px solid var(--ameixa)}
+.btn-cheio{background:var(--ameixa);color:var(--linho)}
+.btn-cheio:hover{background:var(--tinta);transform:translateY(-2px)}
+.btn-linha{background:transparent;color:var(--ameixa)}
+.btn-linha:hover{background:var(--ameixa);color:var(--linho)}
+.btn svg{width:18px;height:18px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--linho) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--ameixa) 10%,transparent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.8rem}
+.nav .logo img{height:46px;width:auto}
+.nav ul{display:flex;gap:2rem;list-style:none}
+.nav ul a{text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta);font-weight:400}
+.nav ul a:hover{color:var(--ameixa)}
+.nav .btn{padding:.7rem 1.2rem}
+@media (max-width:860px){.nav ul{display:none}.nav .logo img{height:38px}}
+
+/* HERO */
+.hero{padding-block:clamp(2.5rem,6vw,5.5rem) clamp(3rem,7vw,6rem)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.hero h1{font-size:clamp(3.2rem,7.4vw,6.6rem);letter-spacing:.01em;margin:1.2rem 0 1.6rem}
+.hero h1 em{font-style:normal;color:var(--salvia)}
+.hero p.lead{font-size:1.2rem;max-width:34ch;color:var(--tinta)}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.2rem}
+.assinatura{display:flex;align-items:center;gap:.9rem;margin-top:2.6rem;color:var(--salvia);font-size:.9rem}
+.assinatura img{width:70px}
+.composicao{position:relative;justify-self:end;width:min(440px,100%)}
+.arco{border-radius:999px 999px 18px 18px;overflow:hidden;aspect-ratio:460/700;box-shadow:0 40px 80px -40px rgba(59,43,63,.45)}
+.arco img{width:100%;height:100%;object-fit:cover}
+.medalhao{position:absolute;left:-18%;bottom:-6%;width:46%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:8px solid var(--linho);box-shadow:0 20px 40px -20px rgba(59,43,63,.5)}
+.medalhao img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.ramo-flutua{position:absolute;right:-8%;top:6%;width:42%;transform:rotate(-14deg);opacity:.95}
+.selo{position:absolute;right:-4%;bottom:12%;background:var(--linho);border-radius:14px;padding:.7rem 1rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ameixa);box-shadow:0 10px 30px -14px rgba(59,43,63,.45)}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .composicao{justify-self:center;width:min(360px,82%);margin-top:1rem}
+  .medalhao{left:-14%}
+}
+
+/* CORTINA DE FIOS */
+.cortina{position:relative;background:var(--ameixa);color:var(--linho);overflow:hidden}
+.cortina canvas{display:block;width:100%;height:clamp(560px,70vw,720px);touch-action:pan-y;cursor:grab}
+.cortina .texto{position:absolute;inset:auto 0 0 0;padding:0 0 clamp(1.8rem,4vw,3rem);pointer-events:none}
+.cortina .texto .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.cortina h2{color:var(--linho);font-size:clamp(2.2rem,4.6vw,3.8rem);max-width:14ch}
+.cortina p{max-width:32ch;color:color-mix(in srgb,var(--linho) 82%,transparent)}
+@media (max-width:700px){.cortina canvas{height:420px}.cortina .texto{position:static;padding-top:.5rem}}
+.cortina .dica{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--lavanda)}
+
+/* SEÇÕES */
+section{scroll-margin-top:80px}
+.secao{padding-block:clamp(4rem,9vw,7.5rem)}
+.cabeca{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:clamp(2.2rem,5vw,3.6rem)}
+.cabeca h2{font-size:clamp(2.6rem,5.4vw,4.4rem);margin-top:.8rem}
+.cabeca>p{max-width:44ch;justify-self:end;color:var(--tinta)}
+@media (max-width:760px){.cabeca{grid-template-columns:1fr}.cabeca>p{justify-self:start}}
+
+/* COLEÇÕES */
+.colecoes{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.8rem,2vw,1.4rem)}
+.peca{position:relative;border-radius:16px;overflow:hidden;background:var(--linho-2);isolation:isolate;min-height:280px;display:flex}
+.peca img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1);z-index:-2}
+.peca::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(43,30,46,.55) 60%,rgba(43,30,46,.9));z-index:-1}
+.peca:hover img{transform:scale(1.05)}
+.peca .info{margin-top:auto;padding:1.4rem 1.4rem 1.3rem;color:var(--linho);width:100%}
+.peca h3{color:var(--linho);font-size:clamp(1.9rem,3vw,2.5rem)}
+.peca p{font-size:.95rem;opacity:.9;margin:.3rem 0 .9rem;max-width:30ch}
+.peca button{all:unset;cursor:pointer;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:2px}
+.peca button:focus-visible{outline:2px solid var(--lavanda);outline-offset:4px}
+.p-lum{grid-column:span 5;grid-row:span 2;min-height:620px}
+.p-mesa{grid-column:span 4;min-height:300px}
+.p-bolsa{grid-column:span 3;min-height:300px}
+.p-deco{grid-column:span 3;min-height:300px}
+.p-casa{grid-column:span 4;min-height:300px}
+.p-casa img{object-position:center 30%}
+@media (max-width:960px){
+  .p-lum{grid-column:span 12;min-height:520px;grid-row:auto}
+  .p-mesa,.p-casa{grid-column:span 7}.p-bolsa,.p-deco{grid-column:span 5}
+}
+@media (max-width:560px){.p-mesa,.p-casa,.p-bolsa,.p-deco{grid-column:span 12;min-height:360px}}
+
+/* VITRINE DE BOLSAS */
+.vitrine{background:var(--linho-2)}
+.trilho{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:thin;scrollbar-color:var(--lavanda) transparent}
+.trilho figure{scroll-snap-align:start}
+.trilho .foto{aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:var(--areia)}
+.trilho img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.trilho figure:hover img{transform:scale(1.04)}
+.trilho figcaption{margin-top:.7rem;font-size:.9rem;color:var(--tinta)}
+.trilho figcaption span{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia)}
+
+/* ATELIÊ */
+.atelie .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.retratos{position:relative;padding-bottom:18%}
+.retratos .r1{border-radius:16px;overflow:hidden;width:82%;aspect-ratio:397/410}
+.retratos .r1 img,.retratos .r2 img{width:100%;height:100%;object-fit:cover}
+.retratos .r2{position:absolute;right:0;bottom:0;width:40%;aspect-ratio:162/395;border-radius:999px 999px 12px 12px;overflow:hidden;border:7px solid var(--linho)}
+.atelie h2{font-size:clamp(2.6rem,5vw,4.2rem);margin:.8rem 0 1.4rem}
+.atelie p+p{margin-top:1rem}
+.citacao{margin-top:2rem;padding-left:1.4rem;border-left:2px solid var(--lavanda);font-family:var(--display);font-size:clamp(1.5rem,2.4vw,1.9rem);color:var(--ameixa);line-height:1.25}
+.citacao small{display:block;font-family:var(--texto);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia);margin-top:.7rem}
+@media (max-width:860px){.atelie .wrap{grid-template-columns:1fr}}
+
+/* PROCESSO */
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:passo;border-top:1px solid color-mix(in srgb,var(--ameixa) 25%,transparent)}
+.passo{padding:1.8rem 1.6rem 0 0;position:relative}
+.passo::before{counter-increment:passo;content:counter(passo,decimal-leading-zero);font-family:var(--display);font-size:3rem;color:var(--lavanda);display:block;line-height:1;margin-bottom:1rem}
+.passo h3{font-family:var(--texto);font-weight:500;font-size:1rem;letter-spacing:.06em;color:var(--tinta);margin-bottom:.5rem}
+.passo p{font-size:.97rem;color:color-mix(in srgb,var(--tinta) 85%,transparent);max-width:28ch}
+@media (max-width:860px){.passos{grid-template-columns:1fr 1fr;row-gap:2rem}}
+@media (max-width:480px){.passos{grid-template-columns:1fr}}
+
+/* ENCOMENDA */
+.encomenda{background:var(--ameixa);color:var(--linho)}
+.encomenda h2{color:var(--linho)}
+.encomenda .eyebrow{color:var(--lavanda)}
+.encomenda .cabeca>p{color:color-mix(in srgb,var(--linho) 85%,transparent)}
+.ateliezinho{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.5rem,4vw,3.5rem)}
+.form{display:grid;gap:1.8rem}
+.campo>label,.campo>.rot{display:block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--lavanda);margin-bottom:.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{cursor:pointer;padding:.65rem 1.1rem;border-radius:999px;border:1px solid color-mix(in srgb,var(--linho) 35%,transparent);font-size:.92rem;transition:all .2s ease}
+.chips input:checked+label{background:var(--linho);color:var(--ameixa);border-color:var(--linho)}
+.chips input:focus-visible+label{outline:2px solid var(--lavanda);outline-offset:3px}
+.cores label{display:flex;align-items:center;gap:.55rem}
+.cores i{width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:inline-block}
+.form textarea,.form input[type=text]{width:100%;background:color-mix(in srgb,var(--linho) 8%,transparent);border:1px solid color-mix(in srgb,var(--linho) 30%,transparent);border-radius:12px;padding:.9rem 1rem;color:var(--linho);font:inherit;font-size:1rem}
+.form textarea{min-height:110px;resize:vertical}
+.form ::placeholder{color:color-mix(in srgb,var(--linho) 55%,transparent)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.bilhete{background:var(--linho);color:var(--tinta);border-radius:18px;padding:1.6rem;position:sticky;top:100px;align-self:start;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.bilhete .topo{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.bilhete .topo img{width:120px}
+.no-preview{width:100%;height:150px;display:block;margin:.2rem 0 1rem}
+.msg{white-space:pre-wrap;font-size:.95rem;background:var(--linho-2);border-radius:12px;padding:1rem;min-height:150px;border:1px dashed color-mix(in srgb,var(--ameixa) 25%,transparent)}
+.bilhete .btn{width:100%;justify-content:center;margin-top:1.1rem}
+.bilhete .num{font-size:.85rem;text-align:center;margin-top:.7rem;color:var(--salvia)}
+@media (max-width:900px){.ateliezinho{grid-template-columns:1fr}.bilhete{position:static}.duas{grid-template-columns:1fr}}
+
+/* CUIDADOS */
+.cuidados .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.cuidados h2{font-size:clamp(2.4rem,4.6vw,3.8rem);margin:.8rem 0 1rem}
+.lista-cuidados{list-style:none;display:grid;gap:0}
+.lista-cuidados li{display:grid;grid-template-columns:44px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid color-mix(in srgb,var(--ameixa) 15%,transparent)}
+.lista-cuidados svg{width:30px;height:30px;color:var(--ameixa)}
+.lista-cuidados b{font-weight:500;display:block;color:var(--tinta)}
+.fios-img{border-radius:16px;overflow:hidden;margin-top:1.6rem;aspect-ratio:16/10}
+.fios-img img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.cuidados .wrap{grid-template-columns:1fr}}
+
+/* RODAPÉ */
+footer{background:var(--tinta);color:var(--linho);padding-block:4rem 2.2rem}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2rem}
+footer img{width:220px}
+footer h4{font-weight:400;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--lavanda);margin-bottom:.9rem}
+footer a{text-decoration:none;display:block;margin-bottom:.4rem;color:color-mix(in srgb,var(--linho) 85%,transparent)}
+footer a:hover{color:var(--linho)}
+footer .base{grid-column:1/-1;border-top:1px solid rgba(249,245,242,.12);padding-top:1.4rem;margin-top:1.6rem;font-size:.82rem;color:color-mix(in srgb,var(--linho) 60%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+.zap{position:fixed;right:18px;bottom:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:#2E7D5B;display:grid;place-items:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.45);transition:transform .25s}
+.zap:hover{transform:scale(1.07)}
+.zap svg{width:28px;height:28px;color:#fff}
+
+/* entrada suave, a partir de um estado já visível */
+@media (prefers-reduced-motion:no-preference){
+  .sobe{animation:sobe 1s cubic-bezier(.2,.7,.2,1) both}
+  .sobe.d1{animation-delay:.08s}.sobe.d2{animation-delay:.18s}.sobe.d3{animation-delay:.3s}.sobe.d4{animation-delay:.42s}
+  @keyframes sobe{from{transform:translateY(18px)}to{transform:none}}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Nós de Lavanda Ateliê, início"><img src="img/logo.png" alt="Nós de Lavanda Ateliê"></a>
+    <ul>
+      <li><a href="#colecoes">Peças</a></li>
+      <li><a href="#atelie">O ateliê</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#cuidados">Cuidados</a></li>
+    </ul>
+    <a class="btn btn-cheio" href="#encomenda">Encomendar</a>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow sobe">Ateliê de macramê · peças sob encomenda</p>
+      <h1 class="sobe d1">Feito à mão, <em>nó por nó.</em></h1>
+      <p class="lead sobe d2">Transformo sua casa em um ambiente acolhedor através de peças artesanais em macramê, pensadas para você e tecidas uma a uma.</p>
+      <div class="acoes sobe d3">
+        <a class="btn btn-cheio" href="#encomenda">Criar minha peça</a>
+        <a class="btn btn-linha" href="#colecoes">Ver as peças</a>
+      </div>
+      <div class="assinatura sobe d4"><img src="img/ramo.png" alt=""><span>Tanyeska Pereira, artesã<br>@nosdelavanda.macrame</span></div>
+    </div>
+    <div class="composicao sobe d2">
+      <div class="arco"><img src="img/luminaria-acesa.jpg" alt="Luminária de macramê verde-sálvia acesa, pendurada em um galho de madeira"></div>
+      <div class="medalhao"><img src="img/mesa-posta.jpg" alt="Sousplats de macramê em espiral, cor cru"></div>
+      <img class="ramo-flutua" src="img/ramo.png" alt="">
+      <span class="selo">Peça única, feita para você</span>
+    </div>
+  </div>
+</header>
+
+<section class="cortina" id="fios" aria-label="Cortina de fios interativa">
+  <canvas id="tela" aria-hidden="true"></canvas>
+  <div class="texto">
+    <div class="wrap">
+      <h2>Cada peça começa com um fio.</h2>
+      <div>
+        <p class="dica" id="dica">Passe o cursor pelos fios</p>
+        <p>Algodão, paciência e muitos nós. Do primeiro laço à última franja, tudo é feito à mão no ateliê.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="colecoes">
+  <div class="wrap">
+    <div class="cabeca">
+      <div><p class="eyebrow">As linhas do ateliê</p><h2>Peças que acolhem</h2></div>
+      <p>Nada fica pronto na prateleira. Cada linha abaixo é um ponto de partida: tamanho, cor do fio e acabamento são combinados com você.</p>
+    </div>
+    <div class="colecoes">
+      <article class="peca p-lum">
+        <img src="img/luminaria-acesa.jpg" alt="Luminária de macramê acesa" loading="lazy">
+        <div class="info"><h3>Luminárias</h3><p>Luz filtrada pelos nós. Pendentes e cúpulas no tamanho do seu ambiente.</p><button type="button" data-peca="Luminária">Encomendar uma luminária</button></div>
+      </article>
+      <article class="peca p-mesa">
+        <img src="img/mesa-posta.jpg" alt="Sousplats de macramê em espiral" loading="lazy">
+        <div class="info"><h3>Mesa posta</h3><p>Sousplats, porta-guardanapos e caminhos de mesa.</p><button type="button" data-peca="Mesa posta">Montar minha mesa</button></div>
+      </article>
+      <article class="peca p-bolsa">
+        <img src="img/bolsa-vermelha.jpg" alt="Bolsa de macramê vermelha com padrão em zigue-zague" loading="lazy">
+        <div class="info"><h3>Bolsas</h3><p>Clutches e saquinhos com acabamento dourado.</p><button type="button" data-peca="Bolsa">Quero uma bolsa</button></div>
+      </article>
+      <article class="peca p-deco">
+        <img src="img/painel.jpg" alt="Painel de parede em macramê cor cru" loading="lazy">
+        <div class="info"><h3>Decoração</h3><p>Painéis e peças de parede.</p><button type="button" data-peca="Decoração">Decorar um ambiente</button></div>
+      </article>
+      <article class="peca p-casa">
+        <img src="img/casamento.jpg" alt="Cerimônia de casamento decorada com macramê ao pôr do sol" loading="lazy">
+        <div class="info"><h3>Casamento</h3><p>Arcos, lanternas e detalhes para o grande dia.</p><button type="button" data-peca="Casamento / evento">Falar sobre meu evento</button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="secao vitrine" aria-labelledby="t-bolsas">
+  <div class="wrap">
+    <div class="cabeca">
+      <div><p class="eyebrow">Coleção</p><h2 id="t-bolsas">Bolsas</h2></div>
+      <p>Arraste para o lado. Cada modelo pode ser refeito na cor de fio que você escolher.</p>
+    </div>
+    <div class="trilho" tabindex="0" aria-label="Galeria de bolsas">
+      <figure><div class="foto"><img src="img/bolsa-vermelha.jpg" alt="Bolsa vermelha em zigue-zague" loading="lazy"></div><figcaption><span>Clutch</span>Zigue-zague vermelha</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-saco-preta.jpg" alt="Bolsa saco preta com borlas" loading="lazy"></div><figcaption><span>Saco</span>Preta com borlas</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-clutch-preta.jpg" alt="Clutch preta em zigue-zague" loading="lazy"></div><figcaption><span>Clutch</span>Zigue-zague preta</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-ferrugem.jpg" alt="Bolsa saco cor ferrugem" loading="lazy"></div><figcaption><span>Saco</span>Ferrugem</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-verde.jpg" alt="Bolsa balde verde-sálvia" loading="lazy"></div><figcaption><span>Balde</span>Sálvia</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-branca.jpg" alt="Bolsa saco branca" loading="lazy"></div><figcaption><span>Saco</span>Cru vazada</figcaption></figure>
+      <figure><div class="foto"><img src="img/bolsa-correntes.jpg" alt="Bolsa com alça de elos de corda" loading="lazy"></div><figcaption><span>Transversal</span>Alça de elos</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="secao atelie" id="atelie">
+  <div class="wrap">
+    <div class="retratos">
+      <div class="r1"><img src="img/tanyeska.jpg" alt="Tanyeska Pereira sorrindo no ateliê, segurando um rolo de fio" loading="lazy"></div>
+      <div class="r2"><img src="img/painel.jpg" alt="" loading="lazy"></div>
+    </div>
+    <div>
+      <p class="eyebrow">Minha história</p>
+      <h2>Entrelaçando arte, amor e propósito</h2>
+      <p>Sou Tanyeska Pereira, e o Nós de Lavanda é o ateliê onde transformo fio de algodão em peças que deixam a casa mais acolhedora.</p>
+      <p>Trabalho só por encomenda: cada luminária, bolsa ou mesa posta nasce de uma conversa, ganha a cor e o tamanho certos e é tecida inteira à mão, sem pressa.</p>
+      <blockquote class="citacao">“Essa não sou eu hoje. Essa é a mulher que estou me tornando.”<small>Tanyeska, no Instagram</small></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="como-funciona" style="padding-top:0">
+  <div class="wrap">
+    <div class="cabeca">
+      <div><p class="eyebrow">Sob encomenda</p><h2>Do fio à sua casa</h2></div>
+      <p>Como é feito por encomenda, a peça é desenhada junto com você. O prazo e o valor são combinados na conversa, conforme o tamanho e a complexidade.</p>
+    </div>
+    <div class="passos">
+      <div class="passo"><h3>A conversa</h3><p>Você conta a ideia, o ambiente e as medidas pelo WhatsApp.</p></div>
+      <div class="passo"><h3>Fio e cor</h3><p>Escolhemos juntas a cor do fio, o desenho dos nós e o acabamento.</p></div>
+      <div class="passo"><h3>Tecimento</h3><p>A peça é feita à mão no ateliê, nó por nó, e você acompanha o processo.</p></div>
+      <div class="passo"><h3>Na sua casa</h3><p>Entrega ou envio combinado, com as orientações de cuidado da peça.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao encomenda" id="encomenda">
+  <div class="wrap">
+    <div class="cabeca">
+      <div><p class="eyebrow">Comece aqui</p><h2>Desenhe sua encomenda</h2></div>
+      <p>Escolha a peça e a cor do fio. O recado ao lado se escreve sozinho e segue direto para o WhatsApp do ateliê.</p>
+    </div>
+    <div class="ateliezinho">
+      <form class="form" id="form" novalidate>
+        <div class="campo">
+          <span class="rot" id="r-peca">Qual peça?</span>
+          <div class="chips" role="radiogroup" aria-labelledby="r-peca" id="g-peca"></div>
+        </div>
+        <div class="campo">
+          <span class="rot" id="r-cor">Cor do fio</span>
+          <div class="chips cores" role="radiogroup" aria-labelledby="r-cor" id="g-cor"></div>
+        </div>
+        <div class="campo">
+          <label for="detalhes">Conte sua ideia</label>
+          <textarea id="detalhes" placeholder="Ex.: luminária pendente para a sala de jantar, uns 40 cm de diâmetro"></textarea>
+        </div>
+        <div class="duas">
+          <div class="campo"><label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" placeholder="Como posso te chamar?"></div>
+          <div class="campo"><label for="cidade">Sua cidade</label><input type="text" id="cidade" autocomplete="address-level2" placeholder="Para combinar a entrega"></div>
+        </div>
+      </form>
+      <aside class="bilhete" aria-live="polite">
+        <div class="topo"><img src="img/logo.png" alt=""><span class="eyebrow">Seu recado</span></div>
+        <svg class="no-preview" id="preview" viewBox="0 0 320 150" aria-hidden="true"></svg>
+        <div class="msg" id="msg"></div>
+        <a class="btn btn-cheio" id="enviar" href="https://wa.me/5535984535556" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Enviar pelo WhatsApp
+        </a>
+        <p class="num">WhatsApp do ateliê: (35) 98453-5556</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="secao cuidados" id="cuidados">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Cuidados</p>
+      <h2>Para a peça durar com você</h2>
+      <p>O macramê é feito de fio de algodão. Com alguns cuidados simples ele mantém a cor, a forma e o caimento das franjas por muitos anos.</p>
+      <div class="fios-img"><img src="img/carreteis.jpg" alt="Carretéis de fio de algodão em tons de rosé, cru e areia" loading="lazy"></div>
+    </div>
+    <ul class="lista-cuidados">
+      <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 26 20 12m-4-4 8 8M20 6l6 6"/></svg><div><b>Tire o pó com delicadeza</b>Use uma escova macia, um espanador ou o aspirador na potência mínima.</div></li>
+      <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="16" cy="16" r="5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3"/></svg><div><b>Evite sol direto</b>A luz forte do dia desbota o algodão aos poucos, principalmente nos tons escuros.</div></li>
+      <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M16 4c5 6 8 10 8 14a8 8 0 0 1-16 0c0-4 3-8 8-14Z"/></svg><div><b>Lave à mão, com água fria</b>Sabão neutro, sem torcer. Aperte de leve com uma toalha para tirar o excesso.</div></li>
+      <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 20h24M8 20v-4M24 20v-4M12 20v6M20 20v6"/></svg><div><b>Seque à sombra, deitada</b>Na horizontal a peça mantém o formato. Depois, penteie as franjas com os dedos.</div></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="img/logo-claro.png" alt="Nós de Lavanda Ateliê">
+      <p style="margin-top:1rem;max-width:34ch;color:color-mix(in srgb,var(--linho) 75%,transparent)">Peças artesanais em macramê, feitas à mão e sob encomenda.</p>
+    </div>
+    <div>
+      <h4>Fale com o ateliê</h4>
+      <a href="https://wa.me/5535984535556" target="_blank" rel="noopener">WhatsApp (35) 98453-5556</a>
+      <a href="https://www.instagram.com/nosdelavanda.macrame/" target="_blank" rel="noopener">Instagram @nosdelavanda.macrame</a>
+    </div>
+    <div>
+      <h4>Peças</h4>
+      <a href="#colecoes">Luminárias</a><a href="#colecoes">Mesa posta</a><a href="#colecoes">Bolsas</a><a href="#colecoes">Decoração</a><a href="#colecoes">Casamento</a>
+    </div>
+    <div class="base"><span>© 2026 Nós de Lavanda Ateliê · Tanyeska Pereira</span><span>Feito à mão, nó por nó.</span></div>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5535984535556" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<script>
+/* ---------- Cortina de fios: verlet com nós quadrados em rede de losangos ---------- */
+(function(){
+  const cv=document.getElementById('tela'), ctx=cv.getContext('2d');
+  const reduz=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(matchMedia('(hover: none)').matches) document.getElementById('dica').textContent='Toque e arraste pelos fios';
+  let W,H,dpr,P=[],L=[],K=[],cordas=[],mouse={x:-999,y:-999,vx:0,vy:0,on:false},t=0,vivo=true;
+  const SEG=13, TOPO=56;
+  function monta(){
+    dpr=Math.min(devicePixelRatio||1,2); W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    P=[];L=[];K=[];cordas=[];
+    const passo=W<600?17:21, n=Math.floor((W*0.9)/passo)&~1, x0=(W-(n-1)*passo)/2;
+    const pts=Math.floor((H*(W<700?0.86:0.6)-TOPO)/SEG);
+    for(let i=0;i<n;i++){
+      const c=[];
+      for(let j=0;j<pts;j++){
+        const p={x:x0+i*passo,y:TOPO+j*SEG,px:x0+i*passo,py:TOPO+j*SEG,fixo:j===0};
+        P.push(p);c.push(p);
+        if(j>0)L.push([c[j-1],p,SEG]);
+      }
+      cordas.push(c);
+    }
+    // nós: linhas alternadas formam a rede de losangos; depois um friso em "V" como a barra das luminárias
+    const fim=Math.floor(pts*0.62);
+    for(let r=0,j=4;j<fim;r++,j+=3){
+      for(let i=r%2;i+1<n;i+=2){
+        // friso em V: as últimas linhas só fecham no centro de cada grupo de 8 fios
+        if(j>fim-10){ const g=i%8, lim=Math.floor((j-(fim-10))/3); if(g<lim||g>6-lim) continue; }
+        K.push([cordas[i][j],cordas[i+1][j]]);
+      }
+    }
+    for(const k of K)L.push([k[0],k[1],5]);
+    for(let s=0;s<260;s++)passoFisica(0); // já começa assentado
+  }
+  function passoFisica(dt){
+    t+=0.016;
+    const vento=reduz?0:Math.sin(t*0.7)*0.05+Math.sin(t*1.9)*0.025;
+    for(const p of P){ if(p.fixo)continue;
+      let vx=(p.x-p.px)*0.975, vy=(p.y-p.py)*0.975;
+      p.px=p.x;p.py=p.y;
+      const prof=(p.y-TOPO)/(H*(W<700?0.86:0.6));
+      p.x+=vx+vento*prof*prof*2; p.y+=vy+0.42;
+      if(mouse.on){const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy;
+        if(d2<4200){const d=Math.sqrt(d2)||1,f=(65-d)/65; p.x+=dx/d*f*3+mouse.vx*f*0.35; p.y+=dy/d*f*1.5+mouse.vy*f*0.2;}}
+    }
+    for(let it=0;it<7;it++)for(const [a,b,len] of L){
+      const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,dif=(d-len)/d*0.5;
+      const ox=dx*dif,oy=dy*dif;
+      if(!a.fixo){a.x+=ox;a.y+=oy} if(!b.fixo){b.x-=ox;b.y-=oy}
+    }
+  }
+  function desenha(){
+    ctx.clearRect(0,0,W,H);
+    // varão de madeira
+    const g=ctx.createLinearGradient(0,TOPO-9,0,TOPO+9);
+    g.addColorStop(0,'#C9A27E');g.addColorStop(.5,'#A9805C');g.addColorStop(1,'#7D5A3E');
+    ctx.fillStyle=g;ctx.beginPath();ctx.roundRect(W*0.03,TOPO-8,W*0.94,15,8);ctx.fill();
+    ctx.lineCap='round';ctx.lineJoin='round';
+    for(const c of cordas){
+      ctx.beginPath();ctx.moveTo(c[0].x,c[0].y-6);
+      for(let j=1;j<c.length-1;j++){const m=c[j],n=c[j+1];ctx.quadraticCurveTo(m.x,m.y,(m.x+n.x)/2,(m.y+n.y)/2)}
+      ctx.lineTo(c[c.length-1].x,c[c.length-1].y);
+      ctx.strokeStyle='rgba(40,24,42,.35)';ctx.lineWidth=5.2;ctx.stroke();
+      ctx.strokeStyle='#EADBC8';ctx.lineWidth=3.6;ctx.stroke();
+      ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=1;ctx.stroke();
+      // franja desfiada
+      const u=c[c.length-1],v=c[c.length-2],ang=Math.atan2(u.y-v.y,u.x-v.x);
+      ctx.strokeStyle='rgba(234,219,200,.7)';ctx.lineWidth=1;
+      for(let f=-1;f<=1;f++){ctx.beginPath();ctx.moveTo(u.x,u.y);ctx.lineTo(u.x+Math.cos(ang+f*.35)*14,u.y+Math.sin(ang+f*.35)*14);ctx.stroke()}
+    }
+    for(const [a,b] of K){
+      const x=(a.x+b.x)/2,y=(a.y+b.y)/2;
+      ctx.fillStyle='#F3E6D6';ctx.strokeStyle='rgba(60,38,58,.45)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.ellipse(x,y,6.2,4.6,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x-5,y);ctx.lineTo(x+5,y);ctx.strokeStyle='rgba(60,38,58,.25)';ctx.stroke();
+    }
+  }
+  function loop(){ if(vivo){passoFisica();desenha();} mouse.vx*=0.8;mouse.vy*=0.8; requestAnimationFrame(loop); }
+  function pos(e){const r=cv.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;mouse.vx=x-mouse.x;mouse.vy=y-mouse.y;if(Math.abs(mouse.vx)>80){mouse.vx=0;mouse.vy=0}mouse.x=x;mouse.y=y;mouse.on=true}
+  cv.addEventListener('pointermove',pos);
+  cv.addEventListener('pointerdown',pos);
+  cv.addEventListener('pointerleave',()=>{mouse.on=false});
+  new IntersectionObserver(es=>{vivo=es[0].isIntersecting}).observe(cv);
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{monta();desenha()},150)});
+  monta();desenha();
+  if(!reduz)requestAnimationFrame(loop); else cv.addEventListener('pointermove',()=>{passoFisica();desenha()});
+})();
+
+/* ---------- Desenhe sua encomenda ---------- */
+(function(){
+  const ZAP='5535984535556';
+  const pecas=['Luminária','Mesa posta','Bolsa','Decoração','Casamento / evento','Outra ideia'];
+  const cores=[['Cru','#EFE4D4'],['Areia','#D9BFA0'],['Rosé','#E8C3BC'],['Terracota','#B4583D'],['Sálvia','#8D9A80'],['Lavanda','#CEB1E0'],['Preto','#24201F'],['Ainda não sei','conic-gradient(#EFE4D4,#E8C3BC,#B4583D,#8D9A80,#CEB1E0,#EFE4D4)']];
+  const est={peca:'Luminária',cor:'Cru'};
+  const gp=document.getElementById('g-peca'),gc=document.getElementById('g-cor');
+  pecas.forEach((p,i)=>{gp.insertAdjacentHTML('beforeend',`<input type="radio" name="peca" id="pc${i}" value="${p}" ${i===0?'checked':''}><label for="pc${i}">${p}</label>`)});
+  cores.forEach(([c,h],i)=>{gc.insertAdjacentHTML('beforeend',`<input type="radio" name="cor" id="cr${i}" value="${c}" ${i===0?'checked':''}><label for="cr${i}"><i style="background:${h}"></i>${c}</label>`)});
+  const $=id=>document.getElementById(id);
+  function corHex(){const c=cores.find(x=>x[0]===est.cor);return c&&c[1].startsWith('#')?c[1]:'#D9BFA0'}
+  function preview(){
+    // corrente de nós quadrados na cor escolhida
+    const h=corHex(),s=$('preview');let o=`<rect width="320" height="150" rx="12" fill="#F1EAE4"/>`;
+    o+=`<rect x="20" y="16" width="280" height="9" rx="4.5" fill="#A9805C"/>`;
+    const xs=[70,110,150,190,230,270];
+    xs.forEach((x,i)=>{o+=`<path d="M${x-12} 22 C ${x-12} 60, ${x+12} 60, ${x+12} 98 L ${x+8} 140" stroke="${h}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+      o+=`<path d="M${x+12} 22 C ${x+12} 60, ${x-12} 60, ${x-12} 98 L ${x-8} 140" stroke="${h}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+      o+=`<ellipse cx="${x}" cy="60" rx="10" ry="7" fill="${h}" stroke="rgba(59,43,63,.35)"/><ellipse cx="${x}" cy="98" rx="9" ry="6" fill="${h}" stroke="rgba(59,43,63,.35)"/>`});
+    s.innerHTML=o;
+  }
+  function msg(){
+    const d=$('detalhes').value.trim(),n=$('nome').value.trim(),c=$('cidade').value.trim();
+    let m=`Olá, Tanyeska! Vi o site do Nós de Lavanda e quero fazer uma encomenda.\n\n• Peça: ${est.peca}\n• Cor do fio: ${est.cor}`;
+    if(d)m+=`\n• Minha ideia: ${d}`;
+    if(c)m+=`\n• Cidade: ${c}`;
+    m+=n?`\n\nMeu nome é ${n}.`:'';
+    $('msg').textContent=m;
+    $('enviar').href=`https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`;
+  }
+  function tudo(){preview();msg()}
+  gp.addEventListener('change',e=>{est.peca=e.target.value;tudo()});
+  gc.addEventListener('change',e=>{est.cor=e.target.value;tudo()});
+  ['detalhes','nome','cidade'].forEach(id=>$(id).addEventListener('input',msg));
+  document.querySelectorAll('[data-peca]').forEach(b=>b.addEventListener('click',()=>{
+    const r=[...gp.querySelectorAll('input')].find(i=>i.value===b.dataset.peca);
+    if(r){r.checked=true;est.peca=r.value;tudo()}
+    document.getElementById('encomenda').scrollIntoView({behavior:'smooth'});
+  }));
+  tudo();
+})();
+</script>
+</body>
+</html>
